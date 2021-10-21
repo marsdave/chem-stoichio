@@ -7,7 +7,6 @@ Created on Thu Aug 19 18:31:24 2021
 
 from chempy import mass_fractions
 from chempy import Substance
-from chempy import balance_stoichiometry
 import numpy as np
 from scipy.optimize import least_squares
 
@@ -88,7 +87,7 @@ def fitfunc_mixture_weights(wt_frac, substances, atomic_fractions):
     residuals = np.zeros(len(goal_keys))
     for i in range(len(goal_keys)):
         key = goal_keys[i]
-        residuals[i] = stoichio[key] - atomic_fractions[key]
+        residuals[i] = (stoichio[key] - atomic_fractions[key])**2
     
     return residuals
     
